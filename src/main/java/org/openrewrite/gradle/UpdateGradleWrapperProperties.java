@@ -21,6 +21,11 @@ import org.openrewrite.Option;
 import org.openrewrite.Recipe;
 import org.openrewrite.properties.ChangePropertyValue;
 
+import java.util.Collections;
+import java.util.List;
+
+import static java.util.Collections.singletonList;
+
 @EqualsAndHashCode(callSuper = false)
 @Getter
 public class UpdateGradleWrapperProperties extends Recipe {
@@ -32,7 +37,12 @@ public class UpdateGradleWrapperProperties extends Recipe {
 
     public UpdateGradleWrapperProperties(String gradleVersion) {
         this.gradleVersion = gradleVersion;
-        doNext(new ChangePropertyValue("distributionUrl",
+    }
+
+    @Override
+    public List<Recipe> getRecipeList() {
+        return singletonList(
+                new ChangePropertyValue("distributionUrl",
                 "https\\://services.gradle.org/distributions/gradle-" + gradleVersion + "-bin.zip",
                 null,
                 "gradle/wrapper/gradle-wrapper.properties")
