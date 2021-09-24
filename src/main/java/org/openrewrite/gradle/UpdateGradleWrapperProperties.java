@@ -21,7 +21,6 @@ import org.openrewrite.Option;
 import org.openrewrite.Recipe;
 import org.openrewrite.properties.ChangePropertyValue;
 
-import java.util.Collections;
 import java.util.List;
 
 import static java.util.Collections.singletonList;
